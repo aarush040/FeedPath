@@ -4,64 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feed Path | Register & Dashboard</title>
-<link rel="stylesheet" href="style.css">
 
   <!-- Google Fonts & Material Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ---------- BASE ---------- */
+    /* Keep your existing UI styles but remove the old background */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
-/* ---------- ACTION BUTTONS ---------- */
-.action-btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #ff8a00, #e52e71);
-  color: white;
-  font-weight: 600;
-  border-radius: 12px;
-  padding: 0.9rem 1.8rem;
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-}
 
     body {
-  margin: 0;
-}
-<body>
-  <div class="dashboard-bg">
-    <div class="overlay"></div>
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-    <!-- put all your existing content here -->
-    <div class="content-wrapper">
-      <!-- Registration, Login, and Dashboard sections -->
-      ... (everything from your current body)
-    </div>
-
-  </div>
-</body>
-
-    body {
-  animation: fadeIn 1.2s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+    .content-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+    }
 
     .container {
       background: rgba(255, 255, 255, 0.15);
@@ -107,24 +82,6 @@
       font-weight: bold;
     }
 
-    input::placeholder {
-      color: #eaeaea;
-    }
-
-    .address-field {
-      position: relative;
-    }
-
-    .address-field .material-icons {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #ffb300;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
     button {
       background: linear-gradient(135deg, #ff8a00, #e52e71);
       border: none;
@@ -159,9 +116,10 @@
       color: #ccc;
       font-size: 0.9rem;
       text-align: center;
+      z-index: 2;
+      position: relative;
     }
 
-    /* ---------- DASHBOARD ---------- */
     .dashboard {
       display: none;
       width: 100%;
@@ -174,17 +132,6 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
-    /* === Smooth transition for section changes === */
-.container, .dashboard {
-  transition: opacity 0.5s ease, transform 0.4s ease;
-}
-
-.container[style*="display: none"], 
-.dashboard:not(.active) {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
 
     .card {
       background: rgba(255, 255, 255, 0.15);
@@ -195,11 +142,6 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
       box-shadow: 0 8px 32px rgba(31, 38, 135, 0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
 
     .card h3 {
@@ -216,7 +158,25 @@
       line-height: 1.5;
     }
 
-    /* ---------- RESPONSIVE ---------- */
+    .action-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff8a00, #e52e71);
+      color: white;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 0.9rem 1.8rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Responsive */
     @media (max-width: 600px) {
       h1 { font-size: 1.6rem; }
       .container { padding: 1.5rem; }
@@ -225,87 +185,90 @@
     }
   </style>
 </head>
+
 <body>
+  <div class="dashboard-bg">
+    <!-- darker overlay to make white text visible -->
+    <div class="overlay" style="background-color: rgba(0,0,0,0.55);"></div>
 
-  <!-- Registration Form -->
-  <div class="container" id="registerPage">
-    <h1>🍽️ Feed Path Registration</h1>
-    <form>
-      <label for="userType">Are you a Restaurant or NGO?</label>
-      <select id="userType" required>
-        <option value="">Select Type</option>
-        <option value="restaurant">Restaurant</option>
-        <option value="ngo">NGO</option>
-      </select>
+    <div class="content-wrapper">
+      <!-- Registration Form -->
+      <div class="container" id="registerPage">
+        <h1>🍽️ Feed Path Registration</h1>
+        <form>
+          <label for="userType">Are you a Restaurant or NGO?</label>
+          <select id="userType" required>
+            <option value="">Select Type</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="ngo">NGO</option>
+          </select>
 
-      <label for="orgName">Name of Restaurant / NGO</label>
-      <input type="text" id="orgName" placeholder="Enter organization name" required>
+          <label for="orgName">Name of Restaurant / NGO</label>
+          <input type="text" id="orgName" placeholder="Enter organization name" required>
 
-      <label for="address">Address</label>
-      <div class="address-field">
-        <input type="text" id="address" placeholder="Enter address" required>
-        <span class="material-icons">location_on</span>
+          <label for="address">Address</label>
+          <div class="address-field">
+            <input type="text" id="address" placeholder="Enter address" required>
+            <span class="material-icons">location_on</span>
+          </div>
+
+          <label for="pincode">Pincode</label>
+          <input type="text" id="pincode" placeholder="Enter area pincode" required>
+
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="Enter contact number" required>
+
+          <label for="whatsapp">WhatsApp Number</label>
+          <input type="tel" id="whatsapp" placeholder="Enter WhatsApp number" required>
+
+          <button type="button" onclick="showDashboard()">Register</button>
+        </form>
+
+        <div class="switch-link">
+          Already have an account? <a href="#" onclick="showLogin()">Login here</a>
+        </div>
       </div>
 
-      <label for="pincode">Pincode</label>
-      <input type="text" id="pincode" placeholder="Enter area pincode" required>
+      <!-- Login Form -->
+      <div class="container" id="loginPage" style="display: none;">
+        <h1>🔑 Feed Path Login</h1>
+        <form>
+          <label for="loginEmail">Email or Phone</label>
+          <input type="text" id="loginEmail" placeholder="Enter email or phone" required>
 
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" placeholder="Enter contact number" required>
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter password" required>
 
-      <label for="whatsapp">WhatsApp Number</label>
-      <input type="tel" id="whatsapp" placeholder="Enter WhatsApp number" required>
+          <button type="button" onclick="showDashboard()">Login</button>
+        </form>
 
-      <button type="button" onclick="showDashboard()">Register</button>
-    </form>
+        <div class="switch-link">
+          New user? <a href="#" onclick="showRegister()">Register here</a>
+        </div>
+      </div>
 
-    <div class="switch-link">
-      Already have an account? <a href="#" onclick="showLogin()">Login here</a>
+      <!-- Dashboard -->
+      <section class="dashboard" id="dashboard">
+        <div class="card">
+          <h3>Post Donation</h3>
+          <p>Have surplus food? Share it with those in need.</p>
+          <a href="dashboard.html" class="action-btn">Post Now</a>
+        </div>
+
+        <div class="card">
+          <h3>Request Food</h3>
+          <p>Need food for your NGO or community event?</p>
+          <a href="requestpickup.html" class="action-btn">Request Now</a>
+        </div>
+      </section>
+
+      <footer>
+        © 2025 Feed Path | Connecting food givers and receivers for a hunger-free world
+      </footer>
     </div>
   </div>
-
-  <!-- Login Form -->
-  <div class="container" id="loginPage" style="display: none;">
-    <h1>🔑 Feed Path Login</h1>
-    <form>
-      <label for="loginEmail">Email or Phone</label>
-      <input type="text" id="loginEmail" placeholder="Enter email or phone" required>
-
-      <label for="loginPassword">Password</label>
-      <input type="password" id="loginPassword" placeholder="Enter password" required>
-
-      <button type="button" onclick="showDashboard()">Login</button>
-    </form>
-
-    <div class="switch-link">
-      New user? <a href="#" onclick="showRegister()">Register here</a>
-    </div>
-  </div>
-
-  <!-- Dashboard -->
-  <section class="dashboard" id="dashboard">
-    <div class="card">
-      <h3>Post Donation</h3>
-      <p>Have surplus food? Share it with those in need.  
-        Add details about your available food and connect with nearby NGOs instantly.</p>
-<a href="dashboard.html" class="action-btn">Post Now</a>
-
-    </div>
-
-    <div class="card">
-      <h3>Request Food</h3>
-      <p>Need food for your NGO or community event?  
-        Request available donations from nearby restaurants through Feed Path.</p>
-<a href="requestpickup.html" class="action-btn">Request Now</a>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Feed Path | Connecting food givers and receivers for a hunger-free world
-  </footer>
 
   <script>
-    // Simple UI navigation (no backend)
     function showDashboard() {
       document.getElementById('registerPage').style.display = 'none';
       document.getElementById('loginPage').style.display = 'none';
@@ -324,12 +287,5 @@
       document.getElementById('registerPage').style.display = 'block';
     }
   </script>
-
 </body>
 </html>
-
-
-
-
-
-
