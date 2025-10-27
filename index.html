@@ -169,6 +169,17 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
+    /* === Smooth transition for section changes === */
+.container, .dashboard {
+  transition: opacity 0.5s ease, transform 0.4s ease;
+}
+
+.container[style*="display: none"], 
+.dashboard:not(.active) {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
 
     .card {
       background: rgba(255, 255, 255, 0.15);
@@ -311,6 +322,7 @@
 
 </body>
 </html>
+
 
 
 
