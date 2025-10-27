@@ -13,16 +13,17 @@
   <style>
     /* --- Register Page Specific Fixes --- */
     .register-bg {
-      background: url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1350&q=80')
-        no-repeat center center/cover;
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center; /* centers vertically */
-      flex-direction: column;
-      text-align: center;
-    }
+  background: url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1350&q=80')
+    no-repeat center center/cover;
+  min-height: calc(100vh - 70px);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  z-index: 1; /* <-- added */
+}
 
     .register-bg .overlay {
       position: absolute;
@@ -97,6 +98,11 @@
       z-index: 2;
       text-align: center;
     }
+    .register-container, 
+.register-container * {
+  color: #222 !important;
+}
+
   </style>
 </head>
 
@@ -153,4 +159,5 @@
   </script>
 </body>
 </html>
+
 
