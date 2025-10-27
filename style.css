@@ -359,6 +359,70 @@ body, html {
   flex-direction: column;
   align-items: center;
 }
+/* ---------- Register page fixes (append this to the end of style.css) ---------- */
+
+/* Force register background to center content */
+.register-bg {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;      /* vertical centering */
+  padding-top: 0 !important;           /* remove any extra top padding that pushes it down */
+  min-height: calc(100vh - 72px);      /* leave room for navbar if it's fixed-ish */
+}
+
+/* Ensure overlay sits behind content and keeps contrast */
+.register-bg .overlay {
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  z-index: 0 !important;
+}
+
+/* The white card that contains the form */
+.register-container {
+  position: relative;
+  z-index: 2;
+  background: #fff !important;
+  color: #222 !important;              /* dark text inside the white card */
+  width: 90%;
+  max-width: 560px;
+  border-radius: 16px;
+  padding: 36px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  text-align: left;
+}
+
+/* Form field colors — ensure inputs show dark text and visible borders */
+.register-container label {
+  color: #2e7d32 !important;
+  font-weight: 600;
+}
+
+.register-container input,
+.register-container select,
+.register-container textarea {
+  color: #222 !important;
+  background: #fff !important;
+  border: 2px solid #cfe9c8 !important;
+}
+
+/* Buttons */
+.register-container button {
+  background: #2e7d32 !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+}
+
+/* If a previous global rule forced white text on everything, override it for this card */
+.register-container, 
+.register-container * {
+  color: inherit !important;
+}
+
+/* Small screens: reduce padding so the card fits */
+@media (max-width: 520px) {
+  .register-container { padding: 20px; }
+  .register-bg { min-height: calc(100vh - 60px); }
+}
+
 
 
 
