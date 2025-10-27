@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FeedPath | Register</title>
+  <title>FeedPath | Register & Dashboard</title>
 
   <!-- Google Fonts & Material Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -13,22 +13,22 @@
   <style>
     /* --- Register Page Specific Fixes --- */
     .register-bg {
-  background: url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1350&q=80')
-    no-repeat center center/cover;
-  min-height: calc(100vh - 70px);
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  z-index: 1; /* <-- added */
-}
+      background: url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1350&q=80')
+        no-repeat center center/cover;
+      min-height: calc(100vh - 70px);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      z-index: 1;
+    }
 
     .register-bg .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.55);
       z-index: 0;
     }
 
@@ -91,6 +91,60 @@
       background: #66bb6a;
     }
 
+    .dashboard {
+      display: none;
+      position: relative;
+      z-index: 2;
+      margin-top: 40px;
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2e7d32;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 1.5rem;
+    }
+
+    .action-btn {
+      background: #2e7d32;
+      color: white;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 0.9rem 1.8rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .action-btn:hover {
+      background: #66bb6a;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+
     footer {
       margin-top: 40px;
       color: #eee;
@@ -98,13 +152,12 @@
       z-index: 2;
       text-align: center;
     }
-    .register-container, 
-.register-container * {
-  color: #222 !important;
-        background: #fff !important;
 
-}
-
+    .register-container,
+    .register-container * {
+      color: #222 !important;
+      background: #fff !important;
+    }
   </style>
 </head>
 
@@ -121,7 +174,7 @@
   <div class="register-bg">
     <div class="overlay"></div>
 
-    <div class="register-container">
+    <div class="register-container" id="registerPage">
       <h1>Register Your Organization</h1>
       <form id="registerForm">
         <label for="userType">I am a:</label>
@@ -143,23 +196,35 @@
         <label for="phone">Phone Number</label>
         <input type="tel" id="phone" placeholder="Enter contact number" required>
 
-       
         <button type="submit">Register</button>
       </form>
     </div>
+
+    <!-- DASHBOARD SECTION -->
+    <section class="dashboard" id="dashboard">
+      <div class="card">
+        <h3>Post Donation</h3>
+        <p>Have surplus food? Share it with those in need.</p>
+        <a href="dashboard.html" class="action-btn">Post Now</a>
+      </div>
+
+      <div class="card">
+        <h3>Request Food</h3>
+        <p>Need food for your NGO or community event?</p>
+        <a href="requestpickup.html" class="action-btn">Request Now</a>
+      </div>
+    </section>
 
     <footer>© 2025 FeedPath | Connecting food givers and receivers for a hunger-free world</footer>
   </div>
 
   <script>
+    // Show dashboard after registration
     document.getElementById("registerForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      window.location.href = "dashboard.html";
+      document.getElementById("registerPage").style.display = "none";
+      document.getElementById("dashboard").style.display = "grid";
     });
   </script>
 </body>
 </html>
-
-
-
-
